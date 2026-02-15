@@ -1,0 +1,9 @@
+[Thumbnailer Entry]
+Type=Application
+Version=1.0
+Encoding=UTF-8
+Name=BLP Image Thumbnailer
+
+Exec=warcraft-rs blp convert %i %o --input-format blp
+
+MimeType=image/x-blp;image/x-blp0;image/x-blp1;image/x-blp2;

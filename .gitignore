@@ -1,1 +1,10 @@
 /target
+build
+test.blp
+Cargo.lock
+*.o
+test-qimage
+test-blp
+verify.sh
+test-qimage.cpp
+test-plugin.sh
