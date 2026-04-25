@@ -23,6 +23,8 @@ Qt6 plugin that adds native BLP (Blizzard Picture) file support to Gwenview and 
 2. **Make warcraft-rs accessible to GUI applications** (recommended):
    ```bash
    sudo ln -s ~/.cargo/bin/warcraft-rs /usr/local/bin/warcraft-rs
+   # Or, if you installed using a differjnt cargo --root, e.g. ~/.local:
+   sudo ln -s ~/.local/bin/warcraft-rs /usr/local/bin/warcraft-rs
    ```
    This ensures the plugin can find the converter when opening files via double-click.
 

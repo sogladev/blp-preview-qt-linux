@@ -73,8 +73,10 @@ bool BlpHandler::read(QImage *image)
     if (warcraftRs.isEmpty()) {
         QStringList candidatePaths = {
             QDir::homePath() + "/.cargo/bin/warcraft-rs",
+            QDir::homePath() + "/.local/bin/warcraft-rs",
             "/usr/local/bin/warcraft-rs",
-            "/usr/bin/warcraft-rs"
+            "/usr/bin/warcraft-rs",
+            "/bin/warcraft-rs"
         };
 
         for (const QString &path : candidatePaths) {
@@ -90,10 +92,15 @@ bool BlpHandler::read(QImage *image)
         qWarning() << "warcraft-rs executable not found. Checked locations:";
         qWarning() << "  - System PATH";
         qWarning() << "  -" << QDir::homePath() + "/.cargo/bin/warcraft-rs";
+        qWarning() << "  -" << QDir::homePath() + "/.local/bin/warcraft-rs";
         qWarning() << "  - /usr/local/bin/warcraft-rs";
         qWarning() << "  - /usr/bin/warcraft-rs";
+        qWarning() << "  - /bin/warcraft-rs";
         qWarning() << "Install with: cargo install warcraft-rs";
-        qWarning() << "Or create symlink: sudo ln -s ~/.cargo/bin/warcraft-rs /usr/local/bin/";
+        qWarning() << "Or create a system-wide symlink to make it visible to GUI apps:";
+        qWarning() << "  sudo ln -s ~/.cargo/bin/warcraft-rs /usr/local/bin/";
+        qWarning() << "  or";
+        qWarning() << "  sudo ln -s ~/.local/bin/warcraft-rs /usr/local/bin/";
         QFile::remove(inputPath);
         QFile::remove(outputPath);
         return false;

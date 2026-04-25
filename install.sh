@@ -72,7 +72,18 @@ echo "   ✓ MIME type registered"
 
 echo "3. Installing thumbnailer..."
 sudo mkdir -p /usr/share/thumbnailers
-sudo cp dist/blp.thumbnailer /usr/share/thumbnailers/
+# Install thumbnailer; prefer using the absolute warcraft-rs path so GUI
+# thumbnail services can find the executable even when ~/.local/bin isn't
+# in their PATH.
+if [ -n "$WARCRAFT_RS_PATH" ]; then
+    echo "   Using warcraft-rs at $WARCRAFT_RS_PATH for thumbnailer"
+    TMP_THUMBNAILER=$(mktemp)
+    sed "s|Exec=warcraft-rs|Exec=$WARCRAFT_RS_PATH|; s|TryExec=warcraft-rs|TryExec=$WARCRAFT_RS_PATH|" dist/blp.thumbnailer > "$TMP_THUMBNAILER"
+    sudo cp "$TMP_THUMBNAILER" /usr/share/thumbnailers/blp.thumbnailer
+    rm -f "$TMP_THUMBNAILER"
+else
+    sudo cp dist/blp.thumbnailer /usr/share/thumbnailers/
+fi
 echo "   ✓ Thumbnailer installed"
 
 echo ""
