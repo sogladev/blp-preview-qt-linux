@@ -84,6 +84,10 @@ if [ -n "$WARCRAFT_RS_PATH" ]; then
 else
     sudo cp dist/blp.thumbnailer /usr/share/thumbnailers/
 fi
+
+# Permissions
+sudo chmod 644 /usr/share/thumbnailers/blp.thumbnailer
+
 echo "   ✓ Thumbnailer installed"
 
 echo ""
